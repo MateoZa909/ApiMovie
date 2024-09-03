@@ -58,10 +58,11 @@ body {
 /* DESPLEGABLE */
 .categories {
     width: 100%;
-    /* background-color: lightcoral; */
     background-color: transparent;
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.15'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     height: 60px;
+    overflow: hidden;
+    position: relative;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -70,67 +71,33 @@ body {
     border-bottom: 1px solid rgba(118, 118, 118, 0.477);
     box-shadow: 5px 3px 5px rgba(0, 0, 0, 0.2);
 }
-/* Estilo del contenedor */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
 
-/* Estilo del botón */
-.dropdown button {
-    background-color: transparent;
-    color: white;
-    border: 1px solid rgba(194, 194, 194, 0.612);
-    padding: 5px 10px;
-    font-size: 11px;
-    border-radius: 18px;
-    cursor: pointer;
+.categories-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    white-space: nowrap;
+    transition: transform 0.5s ease-in-out; /* Animación suave */
+    width: fit-content; /* Ajusta el contenedor al contenido */
 }
 
-/* Estilo del contenido desplegable */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: rgb(80, 3, 80);
-    border: 1px solid rgba(194, 194, 194, 0.612);
-    min-width: 130px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    z-index: 100;
+.category {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background-color: #dfdfdf2c; /* Ajusta el color de fondo según tu diseño */
+    border-radius: 5px;
+    margin-right: 10px; /* Espaciado entre categorías */
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-
-/* Estilo de los enlaces dentro del desplegable */
-.dropdown-content a {
-    color: rgb(255, 255, 255);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 12px;
+.category-text {
     font-family: var(--montserrat);
 }
 
-/* Cambia el color de fondo cuando el mouse pasa por encima de un enlace */
-.dropdown-content a:hover {
-    background-color: #f1f1f146;
+.category:hover {
+    background-color: #555; /* Cambia el color al pasar el ratón */
 }
-
-/* Mostrar el contenido desplegable cuando se pasa el mouse sobre el contenedor */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-
-.dropdown:hover button img {
-    transform: rotate(180deg);
-    transition: 0.5s;
-}
-
 
 /* TOP MOVIES */
 .topmovies {

@@ -14,29 +14,91 @@ const options = {
 async function loadCategories() {
     try {
         const response = await fetch(categoriesUrl, options);
-        
+
         if (!response.ok) {
             throw new Error(`Error HTTP: ${response.status}`);
         }
 
         const data = await response.json();
         
-        // Suponiendo que la respuesta contiene un campo 'genres'
-        const categories = data.genres; // Ajusta según la estructura de tu respuesta
+        const categories = data.genres; 
         
-        const dropdownContent = document.getElementById('category-dropdown-content');
-        dropdownContent.innerHTML = ''; // Limpiar el contenido antes de agregar nuevas categorías
+        const wrapper = document.getElementById('categories-wrapper');
+        wrapper.innerHTML = ''; // Limpiar el contenido antes de agregar nuevas categorías
 
         categories.forEach(category => {
-            const link = document.createElement('a');
-            link.href = '#'; // Ajusta el enlace si es necesario
-            link.textContent = category.name; // Ajusta según la estructura de tu objeto de categoría
-            dropdownContent.appendChild(link);
+            const div = document.createElement('div');
+            div.className = 'category';
+        
+            // Crear un elemento span para el texto
+            const span = document.createElement('span');
+            span.className = 'category-text';  // Asignar una clase específica al texto
+            span.textContent = category.name;
+        
+            // Agregar el span dentro del div
+            div.appendChild(span);
+        
+            // Añadir el div al contenedor
+            wrapper.appendChild(div);
         });
+        
+
+        // Iniciar el carrusel
+        startCarousel();
     } catch (error) {
         console.error('Error al cargar las categorías:', error);
     }
 }
+
+function startCarousel() {
+    const wrapper = document.querySelector('.categories-wrapper');
+    const items = document.querySelectorAll('.category');
+    const itemWidth = items[0].offsetWidth + 10; // Incluye el margen
+    const totalWidth = itemWidth * items.length;
+
+    let scrollAmount = 0;
+
+    function scroll() {
+        scrollAmount += itemWidth;
+        if (scrollAmount >= totalWidth) {
+            scrollAmount = 0;
+        }
+        wrapper.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+
+    function scrollLeft() {
+        scrollAmount -= itemWidth;
+        if (scrollAmount < 0) {
+            scrollAmount = totalWidth - itemWidth;
+        }
+        wrapper.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+
+    function scrollRight() {
+        scrollAmount += itemWidth;
+        if (scrollAmount >= totalWidth) {
+            scrollAmount = 0;
+        }
+        wrapper.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+
+    // Set interval for auto-scrolling
+    const interval = setInterval(scrollRight, 3000); // Ajusta el intervalo según sea necesario
+
+    // Clear the interval when user interacts with buttons
+    document.getElementById('prev-btn').addEventListener('click', () => {
+        clearInterval(interval);
+        scrollLeft();
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+        clearInterval(interval);
+        scrollRight();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadCategories);
+
 
 // Peliculas en tendencia
 async function loadTrendingMovies() {
