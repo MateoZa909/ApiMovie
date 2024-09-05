@@ -1,6 +1,8 @@
 const apiKey = 'c430c77d8b25dc96309ce5d466d3c372'
 const categoriesUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`; // Categorias
 const trendingUrl = `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}`; // Peliculas en tendencia
+const popularMoviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-ES&page=1`; // Peliculas populares
+
 
 const options = {
     method: 'GET',
@@ -50,6 +52,7 @@ async function loadCategories() {
     }
 }
 
+// Funcion de carrusel
 function startCarousel() {
     const wrapper = document.querySelector('.categories-wrapper');
     const items = document.querySelectorAll('.category');
@@ -96,9 +99,6 @@ function startCarousel() {
         scrollRight();
     });
 }
-
-document.addEventListener('DOMContentLoaded', loadCategories);
-
 
 // Peliculas en tendencia
 async function loadTrendingMovies() {
@@ -160,5 +160,43 @@ async function loadTrendingMovies() {
     }
 }
 
+// Peliculas más vistas
+async function loadTopMovies() {
+    try {
+        const response = await fetch(popularMoviesUrl);
+
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const movies = data.results.slice(0, 10); // Obtener las primeras 10 películas más vistas
+        const container = document.querySelector('.tenmovies');
+        
+        // Limpiar el contenido antes de agregar nuevas películas
+        container.innerHTML = '';
+
+        movies.forEach((movie, index) => {
+            const movieDiv = document.createElement('div');
+            movieDiv.classList.add('back');
+
+            const title = document.createElement('h1');
+            title.textContent = index + 1; // Número de la película
+            movieDiv.appendChild(title);
+
+            const img = document.createElement('img');
+            img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+            img.alt = movie.title;
+            movieDiv.appendChild(img);
+
+            container.appendChild(movieDiv);
+        });
+    } catch (error) {
+        console.error('Error al cargar las películas más vistas:', error);
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', loadCategories);
+document.addEventListener('DOMContentLoaded', loadTopMovies);
 document.addEventListener('DOMContentLoaded', loadTrendingMovies);
