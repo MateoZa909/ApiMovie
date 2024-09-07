@@ -32,10 +32,13 @@ async function cargarDetallesPelicula() {
         const movieResponse = await fetch(movieUrl);
         const movieData = await movieResponse.json();
 
+        // Actualizar el título del documento con el nombre de la película
+        document.title = movieData.title;
+
         // Configurar la información de la película
         document.querySelector('.info-movie img').src = `https://image.tmdb.org/t/p/w500${movieData.poster_path}`;
         document.querySelector('.info-synopsis span').textContent = movieData.overview;
-        
+
         // Configurar las categorías
         const categories = movieData.genres.map(genre => genre.name);
         const categoryContainer = document.querySelector('.info-category');
@@ -55,7 +58,7 @@ async function cargarDetallesPelicula() {
         
         if (trailer) {
             const trailerIframe = document.createElement('iframe');
-            trailerIframe.className = 'trailer'
+            trailerIframe.classList = 'trailer'
             trailerIframe.src = `https://www.youtube.com/embed/${trailer.key}`;
             trailerIframe.width = '560';
             trailerIframe.height = '315';
@@ -68,7 +71,7 @@ async function cargarDetallesPelicula() {
             document.querySelector('.trailer').textContent = 'No hay trailer disponible.';
         }
 
-        // // Configurar películas similares
+        // Configurar películas similares
         // const similarMoviesResponse = await fetch(similarMoviesUrl);
         // const similarMoviesData = await similarMoviesResponse.json();
         // const relatedMoviesContainer = document.querySelector('.related-movies');
@@ -94,6 +97,7 @@ async function cargarDetallesPelicula() {
         console.error('Error al cargar los detalles de la película:', error);
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const returnButton = document.querySelector('#return-btn');
