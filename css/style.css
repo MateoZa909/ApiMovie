@@ -39,7 +39,46 @@ body {
     height: 25px;
     background-color: transparent;
     padding-left: 10px;
+    color: white; /* Cambiar el color del texto a blanco */
 }
+
+.search-img input::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Color del texto del placeholder en blanco con transparencia */
+}
+
+.search-img input:focus {
+    outline: none; /* Opcional: remover el borde azul cuando el input esté enfocado */
+}
+
+/* PELICULAS RELACIONADAS */
+.suggestions-box {
+    position: absolute;
+    background-color: rgba(142, 1, 135, 0.95);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 22px); /* Alinearlo con el input */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    top: 6%;
+    margin-top: 5px;
+    display: none; /* Solo mostrar cuando haya sugerencias */
+}
+
+.suggestion-item {
+    padding: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.285);
+    font-family: var(--montserrat);
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+
 
 .search-img .back-img-search {
     background-color: transparent;
@@ -155,7 +194,7 @@ body {
     white-space: nowrap;
     scroll-behavior: smooth;
     padding: 0 10px;
-    gap: 15px;
+    gap: 15px; 
     height: 270px;
     border-bottom: 1px solid rgba(173, 216, 230, 0.126);
 }

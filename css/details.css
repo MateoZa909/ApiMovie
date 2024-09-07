@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Protest+Guerrilla&display=swap');
+
+:root {
+    --montserrat: 'Montserrat', sans-serif;
+    --playfair: 'Playfair Display', sans-serif;
+    --protest-guerrilla: 'Protest Guerrilla', sans-serif;
+}
+
+.return {
+    /* background-color: lightcoral; */
+    width: 100%;
+    padding: 0 10px;
+    margin-top: 10px;
+}
+
+.return img {
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.info-movie {
+    /* background-color: lightcoral; */
+    width: 100%;
+    padding: 0 10px;
+    margin-top: 10px;
+}
+
+.info-movie img {
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: 2px 4px 8px 10px rgba(0, 0, 0, 0.2);
+}
+
+.info-movie .info-synopsis {
+    /* background-color: lightcoral; */
+    margin-top: 10px;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.info-movie .info-synopsis h3 {
+    color: rgb(220, 219, 219);
+    font-family: var(--montserrat);
+}
+
+.info-movie .info-synopsis span {
+    color: rgb(161, 161, 161);
+    font-family: var(--playfair);
+    font-size: 13px;
+}
+
+.info-movie .info-category {
+    margin-top: 10px;
+    /* background-color: lightblue; */
+    height: auto;
+    gap: 10px;
+    display: flex;
+}
+
+.info-movie .info-category .back-category {
+    width: auto;
+    padding: 5px 5px;
+    height: 30px;
+    background-color: rgba(219, 128, 240, 0.155);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    color: white;
+}
+
+.trailer {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.trailer h3 {
+    color: white;
+    font-family: var(--montserrat);
+}
