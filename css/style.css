@@ -40,6 +40,8 @@ body {
     background-color: transparent;
     padding-left: 10px;
     color: white; /* Cambiar el color del texto a blanco */
+    width: 220px;
+    padding: 5px 15px;
 }
 
 .search-img input::placeholder {
@@ -53,15 +55,15 @@ body {
 /* PELICULAS RELACIONADAS */
 .suggestions-box {
     position: absolute;
-    background-color: rgba(142, 1, 135, 0.95);
+    background-color: rgba(26, 26, 26, 0.932);
     border: 1px solid #ccc;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     width: calc(100% - 22px); /* Alinearlo con el input */
     max-height: 200px;
     overflow-y: auto;
     z-index: 10;
     top: 6%;
-    margin-top: 5px;
+    margin-top: 35px;
     display: none; /* Solo mostrar cuando haya sugerencias */
 }
 
@@ -78,7 +80,12 @@ body {
     background-color: #f0f0f0;
 }
 
-
+.pelicula,
+.series,
+.personas {
+    padding: 5px 10px;
+    color: white;
+}
 
 .search-img .back-img-search {
     background-color: transparent;
@@ -88,6 +95,10 @@ body {
     border-radius: 50%;
     width: 30px;
     height: 30px;
+}
+
+.search-img .icon-close {
+    cursor: pointer;
 }
 
 .search-img .back-img-search:active {

@@ -1,11 +1,4 @@
 const apiKey = 'c430c77d8b25dc96309ce5d466d3c372';
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${apiKey}`
-    }
-};
 
 // Obtener parámetros de la URL
 function obtenerParametro(nombre) {
@@ -14,7 +7,6 @@ function obtenerParametro(nombre) {
 }
 
 // Cargar detalles de la película
-// Función para cargar detalles de la película
 async function cargarDetallesPelicula() {
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
@@ -48,6 +40,13 @@ async function cargarDetallesPelicula() {
             const categoryDiv = document.createElement('div');
             categoryDiv.className = 'back-category';
             categoryDiv.textContent = category;
+
+            // Añadir el evento de clic para redirigir a categories.html
+            categoryDiv.addEventListener('click', () => {
+                const categoryId = movieData.genres.find(genre => genre.name === category).id;
+                window.location.href = `categories.html?id=${encodeURIComponent(categoryId)}&name=${encodeURIComponent(category)}`;
+            });
+
             categoryContainer.appendChild(categoryDiv);
         });
 
@@ -56,19 +55,32 @@ async function cargarDetallesPelicula() {
         const videosData = await videosResponse.json();
         const trailer = videosData.results.find(video => video.type === 'Trailer');
         
+        const trailerContainer = document.querySelector('.trailer');
+        trailerContainer.innerHTML = ''; // Limpiar contenido anterior
+
+        // Crear y añadir el encabezado para el tráiler
+        const trailerHeader = document.createElement('h3');
+        trailerHeader.textContent = 'TRAILER'; 
+        trailerHeader.classList = 'trailer'
+        trailerContainer.appendChild(trailerHeader);
+        
         if (trailer) {
             const trailerIframe = document.createElement('iframe');
-            trailerIframe.classList = 'trailer'
+            trailerIframe.classList = 'trailer';
             trailerIframe.src = `https://www.youtube.com/embed/${trailer.key}`;
             trailerIframe.width = '560';
             trailerIframe.height = '315';
             trailerIframe.frameBorder = '0';
             trailerIframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
             trailerIframe.allowFullscreen = true;
-
-            document.querySelector('.trailer').appendChild(trailerIframe);
+            trailerContainer.appendChild(trailerIframe);
         } else {
-            document.querySelector('.trailer').textContent = 'No hay trailer disponible.';
+            // Crear y configurar la imagen de reemplazo
+            const noVideoImage = document.createElement('img');
+            noVideoImage.src = '/public/videonotfound.png';
+            noVideoImage.alt = 'No video available';
+            noVideoImage.classList = 'novideo-image';
+            trailerContainer.appendChild(noVideoImage);
         }
 
         // Configurar películas similares
@@ -98,14 +110,19 @@ async function cargarDetallesPelicula() {
     }
 }
 
-
+// Funcion para volver a la pagina principal (index.html)
 document.addEventListener('DOMContentLoaded', () => {
     const returnButton = document.querySelector('#return-btn');
+    const returnInfo = document.querySelector('.return-info');
     if (returnButton) {
         returnButton.addEventListener('click', () => {
             window.location.href = 'index.html';
         });
     }
+
+    returnButton.addEventListener('mouseup', () => {
+        returnInfo.style.display = 'flex';
+    })
 });
 
 document.addEventListener('DOMContentLoaded', cargarDetallesPelicula);

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Protest+Guerrilla&display=swap');
+
+:root {
+    --montserrat: 'Montserrat', sans-serif;
+    --playfair: 'Playfair Display', sans-serif;
+    --protest-guerrilla: 'Protest Guerrilla', sans-serif;
+}
+
+.back-title-category {
+    /* background-color: lightcoral; */
+    width: 100%;
+    padding: 8px 10px;
+}
+
+.back-title-category h1 {
+    font-family: var(--playfair);
+    color: rgb(235, 233, 233);
+    font-size: 25px;
+}
+
+/* CARDS */
+.grid-content{
+    /* background-color: lightcoral; */
+    width: 100%;
+    padding: 5px 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    place-items: center;
+}
+
+.grid-content .card {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-content .card img {
+    width: 99px;
+    box-shadow: 1px 2px 9px 4px rgba(0, 0, 0, 0.3);
+}
+
+.grid-content .card span {
+    color: rgb(225, 225, 225);
+    font-family: var(--montserrat);
+    font-size: 12px;
+    text-overflow: ellipsis;
+}
+
+#return-btn {
+    padding: 10px 10px;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.image-movie-serie {
+    cursor: pointer;
+}
+
+/* CAMBIADOR DE COLOR */
+@keyframes colorChange {
+    0% { color: #b30202; }   /* Rojo */
+    25% { color: #bbc70b; }  /* Verde */
+    50% { color: #1010cb; }  /* Azul */
+    75% { color: #cd16d1; }  /* Magenta */
+    100% { color: #d86410; } /* Rojo */
+}
+
+.color-change {
+    animation: colorChange 5s infinite; /* Cambia de color cada 5 segundos */
+}

@@ -42,6 +42,11 @@ async function loadCategories() {
         
             // Agregar el span dentro del div
             div.appendChild(span);
+
+            // Añadir el evento de clic para redirigir a categories.html con el ID y nombre de la categoría
+            div.addEventListener('click', () => {
+                window.location.href = `categories.html?id=${encodeURIComponent(category.id)}&name=${encodeURIComponent(category.name)}`;
+            });
         
             // Añadir el div al contenedor
             wrapper.appendChild(div);
