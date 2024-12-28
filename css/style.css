@@ -71,6 +71,7 @@ nav  {
     max-height: 200px;
     overflow-y: auto;
     z-index: 10;
+    left: 3%;
     top: 6%;
     margin-top: 35px;
     display: none; /* Solo mostrar cuando haya sugerencias */
