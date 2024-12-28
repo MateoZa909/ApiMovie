@@ -83,7 +83,7 @@ async function cargarDetallesPelicula() {
             trailerContainer.appendChild(noVideoImage);
         }
 
-        // Configurar películas similares
+        // // Configurar películas similares
         // const similarMoviesResponse = await fetch(similarMoviesUrl);
         // const similarMoviesData = await similarMoviesResponse.json();
         // const relatedMoviesContainer = document.querySelector('.related-movies');
