@@ -6,51 +6,54 @@
     --protest-guerrilla: 'Protest Guerrilla', sans-serif;
 }
 
+/* Icono para atras */
 .return {
     /* background-color: lightcoral; */
     width: 100%;
     padding: 0 10px;
     margin-top: 10px;
 }
-
 .return img {
     transform: rotate(90deg);
     cursor: pointer;
     position: relative;
 }
+/* Icono para atras */
 
+/* INFO MOVIE */
 .info-movie {
     /* background-color: lightcoral; */
     width: 100%;
     padding: 0 10px;
     margin-top: 10px;
 }
-
 .info-movie img {
     width: 100%;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     box-shadow: 2px 4px 8px 10px rgba(0, 0, 0, 0.2);
 }
-
 .info-movie .info-synopsis {
     /* background-color: lightcoral; */
     margin-top: 10px;
     flex-wrap: wrap;
     height: auto;
 }
-
 .info-movie .info-synopsis h3 {
     color: rgb(220, 219, 219);
     font-family: var(--montserrat);
 }
-
 .info-movie .info-synopsis span {
     color: rgb(161, 161, 161);
     font-family: var(--playfair);
     font-size: 13px;
 }
-
+.info-movie .title-categorias {
+    margin-top: 15px;
+    font-size: 15px;
+    color: rgb(220, 219, 219);
+    font-family: var(--montserrat);
+}
 .info-movie .info-category {
     margin-top: 10px;
     /* background-color: lightblue; */
@@ -58,7 +61,6 @@
     gap: 10px;
     display: flex;
 }
-
 .info-movie .info-category .back-category {
     width: auto;
     padding: 5px 5px;
@@ -71,12 +73,45 @@
     border: 1px solid white;
     color: white;
 }
+.info-movie .info-watch {
+    width: 100%;
+    margin-top: 18px;
+}
+.info-movie .info-watch h2 {
+    font-size: 15px;
+    color: rgb(220, 219, 219);
+    font-family: var(--montserrat);
+}
+.provider {
+    margin-top: 10px;
+    width: 100%;
+    /* background-color: lightblue; */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+}
+.provider .img-provider {
+    width: 40px;
+    border-radius: 10px;
+}
+.provider .name-provider {
+    color: rgb(220, 219, 219);
+    font-family: var(--montserrat);
+    font-size: 12px;
+}
+.no-provider-text {
+    color: rgb(220, 219, 219);
+    font-family: var(--montserrat);
+    font-size: 12px;
+}
+/* INFO MOVIE */
+
 
 .trailer {
     margin-top: 10px;
     width: 100%;
 }
-
 .trailer h3 {
     color: rgb(220, 219, 219);
     margin-top: 30px;
@@ -88,7 +123,6 @@
     width: 100%;
     height: 200px;
 }
-
 .return-info {
     position: absolute;
     background-color: rgb(181, 181, 181);
@@ -103,7 +137,6 @@
     top: 62px;
     font-family: var(--montserrat);
 }
-
 .return-info span {
     font-size: 12px;
 }

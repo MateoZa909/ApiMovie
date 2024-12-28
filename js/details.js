@@ -19,6 +19,7 @@ async function cargarDetallesPelicula() {
     const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=es-ES`;
     const videosUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}&language=es-ES`;
     const similarMoviesUrl = `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}&language=es-ES&page=1`;
+    const watchProvidersUrl = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${apiKey}&language=es-ES&page=1`
 
     try {
         const movieResponse = await fetch(movieUrl);
@@ -81,6 +82,42 @@ async function cargarDetallesPelicula() {
             noVideoImage.alt = 'No video available';
             noVideoImage.classList = 'novideo-image';
             trailerContainer.appendChild(noVideoImage);
+        }
+
+
+        // Configurar información sobre dónde mirar
+        const watchProvidersResponse = await fetch(watchProvidersUrl);
+        const watchProvidersData = await watchProvidersResponse.json();
+
+        const country = 'US'; // Cambia esto al código de país que desees
+        const providers = watchProvidersData.results[country]?.flatrate || [];
+
+        const watchContainer = document.querySelector('.info-watch');
+        watchContainer.innerHTML = '<h2>Donde mirar</h2>'; // Encabezado
+
+        if (providers.length > 0) {
+            providers.forEach(provider => {
+                const providerDiv = document.createElement('div');
+                providerDiv.className = 'provider';
+
+                const logo = document.createElement('img');
+                logo.className = 'img-provider'
+                logo.src = `https://image.tmdb.org/t/p/w500${provider.logo_path}`;
+                logo.alt = provider.provider_name;
+
+                const name = document.createElement('span');
+                name.className = 'name-provider'
+                name.textContent = provider.provider_name;
+
+                providerDiv.appendChild(logo);
+                providerDiv.appendChild(name);
+                watchContainer.appendChild(providerDiv);
+            });
+        } else {
+            const noProviderText = document.createElement('p');
+            noProviderText.className = 'no-provider-text'
+            noProviderText.textContent = 'No disponible en ninguna plataforma en tu país.';
+            watchContainer.appendChild(noProviderText);
         }
 
         // // Configurar películas similares
