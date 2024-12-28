@@ -55,10 +55,13 @@ nav  {
 }
 .content-list-user {
     display: flex;
+    width: 80px;
+    /* background-color: lightcoral; */
     margin-right: 10px;
+    justify-content: center;
 }
 .content-list-user img {
-    width: 22px;
+    width: 25px;
 }
 
 /* PELICULAS RELACIONADAS */
