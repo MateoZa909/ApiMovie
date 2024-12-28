@@ -89,7 +89,7 @@ async function cargarDetallesPelicula() {
         const watchProvidersResponse = await fetch(watchProvidersUrl);
         const watchProvidersData = await watchProvidersResponse.json();
 
-        const country = 'US'; // Cambia esto al código de país que desees
+        const country = 'CO'; // Cambia esto al código de país que desees
         const providers = watchProvidersData.results[country]?.flatrate || [];
 
         const watchContainer = document.querySelector('.info-watch');
