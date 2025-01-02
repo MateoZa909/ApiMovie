@@ -134,35 +134,63 @@ async function loadTrendingMovies() {
                 indicator.setAttribute('aria-current', index === 0 ? 'true' : 'false');
                 indicator.setAttribute('aria-label', `Slide ${index + 1}`);
                 carouselIndicators.appendChild(indicator);
-
+            
                 const carouselItem = document.createElement('div');
                 carouselItem.className = `carousel-item ${index === 0 ? 'active' : ''}`;
-
+            
+                // Crear contenedor para la imagen y el ícono
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'image-container';
+            
                 const img = document.createElement('img');
                 img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
                 img.className = 'd-block w-100';
                 img.alt = movie.title;
-
+            
                 // Agregar evento de clic en la imagen
                 img.addEventListener('click', () => {
                     redirigirADetallesPelicula(movie.id);
                 });
+            
+                // Crear el ícono de plus
+                const iconList = document.createElement('img');
+                iconList.src = './../public/plus.svg';
+                iconList.className = 'addLista';
+                iconList.alt = 'Agregar a la lista';
 
+                // Agregar evento de clic al ícono
+                iconList.addEventListener('click', () => {
+                    // Aplicar una clase temporal para la animación
+                    iconList.classList.add('icon-animation');
+
+                    // Cambiar el ícono después de la animación
+                    setTimeout(() => {
+                        iconList.src = './../public/check.svg'; // Cambiar al ícono de check
+                        iconList.alt = 'Agregado a la lista';
+                        iconList.classList.remove('icon-animation'); // Remover la clase de animación
+                    }, 300); // La duración debe coincidir con la duración de la animación en CSS
+                });
+            
+                // Agregar la imagen y el ícono al contenedor
+                imageContainer.appendChild(img);
+                imageContainer.appendChild(iconList);
+            
                 const caption = document.createElement('div');
                 caption.className = 'carousel-caption d-none d-md-block';
-                
+            
                 const title = document.createElement('h5');
                 title.textContent = movie.title;
                 caption.appendChild(title);
-
+            
                 const description = document.createElement('p');
                 description.textContent = movie.overview;
                 caption.appendChild(description);
-
-                carouselItem.appendChild(img);
+            
+                carouselItem.appendChild(imageContainer); // Usar el contenedor en lugar de solo la imagen
                 carouselItem.appendChild(caption);
                 carouselInner.appendChild(carouselItem);
             });
+            
         } else {
             console.error('Elementos del carrusel no encontrados');
         }
