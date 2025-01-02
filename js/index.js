@@ -165,7 +165,7 @@ async function loadTrendingMovies() {
 
                     // Cambiar el ícono después de la animación
                     setTimeout(() => {
-                        iconList.src = './../public/check.svg'; // Cambiar al ícono de check
+                        iconList.src = './public/check.svg'; // Cambiar al ícono de check
                         iconList.alt = 'Agregado a la lista';
                         iconList.classList.remove('icon-animation'); // Remover la clase de animación
                     }, 300); // La duración debe coincidir con la duración de la animación en CSS
