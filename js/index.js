@@ -154,7 +154,7 @@ async function loadTrendingMovies() {
             
                 // Crear el ícono de plus
                 const iconList = document.createElement('img');
-                iconList.src = './../public/plus.svg';
+                iconList.src = './public/plus.svg';
                 iconList.className = 'addLista';
                 iconList.alt = 'Agregar a la lista';
 

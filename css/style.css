@@ -184,8 +184,8 @@ nav  {
 .addLista {
     background-color: rgb(37, 36, 36);
     position: absolute;
-    bottom: 34px;
-    right: 10px;
+    bottom: 39px;
+    right: 45%;
     width: 30px; /* Tamaño del ícono */
     height: 30px;
     cursor: pointer;
